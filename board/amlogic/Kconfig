@@ -1252,6 +1252,12 @@ config KHADAS_VIM4
 	help
 	  Select Khadas VIM4 config
 
+config CORELAB_TVPRO
+	bool "CoreLab TVPro"
+	select TARGET_CORELAB_TVPRO
+	help
+	  Select CoreLab TVPro config
+
 config T7_SKT
 	bool "T7_SKT"
 	select TARGET_T7_SKT
@@ -1330,6 +1336,10 @@ endchoice
 config TARGET_KHADAS_VIM4
 	bool "Khadas VIM4 board"
 	depends on KHADAS_VIM4
+
+config TARGET_CORELAB_TVPRO
+	bool "CoreLab TVPro board"
+	depends on CORELAB_TVPRO
 
 config TARGET_T7_SKT
 	bool "T7 SKT board"
@@ -1902,6 +1912,10 @@ source "board/amlogic/t7_an409_ddr4/Kconfig"
 
 if KHADAS_VIM4
 source "board/amlogic/kvim4/Kconfig"
+endif
+
+if CORELAB_TVPRO
+source "board/amlogic/tvpro/Kconfig"
 endif
 
 if KHADAS_VIM1S
