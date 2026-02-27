@@ -565,36 +565,26 @@ int checkhw(char * name)
 
 	switch (ddr_size) {
 	case CONFIG_T7_4G_SIZE:
-		if (cpu_id.chip_rev == 0xA || cpu_id.chip_rev == 0xb) {
-			#ifdef CONFIG_HDMITX_ONLY
-			strcpy(loc_name, "t7_a311d2_an400-hdmitx-only\0");
-			#else
-			strcpy(loc_name, "t7_a311d2_an400\0");
-			#endif
-		} else if (cpu_id.chip_rev == 0xC) {
-			#ifdef CONFIG_HDMITX_ONLY
-			strcpy(loc_name, "t7c_a311d2_an400-hdmitx-only-4g\0");
-			#else
-			strcpy(loc_name, "t7c_a311d2_an400-4g\0");
-			#endif
+		if (cpu_id.chip_rev == 0x0a || cpu_id.chip_rev == 0x0b) {
+			strcpy(loc_name, "t7_a311d2_tvpro4g\0");
+		} else if (cpu_id.chip_rev == 0x0c) {
+			strcpy(loc_name, "t7c_a311d2_tvpro4g\0");
 		}
 		break;
 	case CONFIG_T7_8G_SIZE:
-		if (cpu_id.chip_rev == 0xA || cpu_id.chip_rev == 0xb) {
-			strcpy(loc_name, "t7_a311d2_an400\0");
-		} else if (cpu_id.chip_rev == 0xC) {
-			strcpy(loc_name, "t7c_a311d2_an400-4g\0");
-			//
+		if (cpu_id.chip_rev == 0x0a || cpu_id.chip_rev == 0x0b) {
+			strcpy(loc_name, "t7_a311d2_tvpro8g\0");
+		} else if (cpu_id.chip_rev == 0x0c) {
+			strcpy(loc_name, "t7c_a311d2_tvpro8g\0");
 		}
 		break;
 	default:
-		printf("DDR size: 0x%llx, multi-dt doesn't support, ", ddr_size);
-		printf("set default t7_a311d2_an400\n");
-		if (cpu_id.chip_rev == 0xA || cpu_id.chip_rev == 0xb) {
-			strcpy(loc_name, "t7_a311d2_an400\0");
-		} else if (cpu_id.chip_rev == 0xC) {
-			strcpy(loc_name, "t7c_a311d2_an400-4g\0");
-			//
+		printf("DDR size: 0x%llx, multi-dtb doesn't support, ", ddr_size);
+		printf("set default t7_a311d2_tvpro4g\n");
+		if (cpu_id.chip_rev == 0x0a || cpu_id.chip_rev == 0x0b) {
+			strcpy(loc_name, "t7_a311d2_tvpro4g\0");
+		} else if (cpu_id.chip_rev == 0x0c) {
+			strcpy(loc_name, "t7c_a311d2_tvpro4g\0");
 		}
 		break;
 	}
@@ -602,7 +592,7 @@ int checkhw(char * name)
 	strcpy(name, loc_name);
 	env_set("aml_dt", loc_name);
 #else
-	env_set("aml_dt", "t7_a311d2_an400\0");
+	env_set("aml_dt", "t7_a311d2_tvpro4g\0");
 #endif
 	return 0;
 }
